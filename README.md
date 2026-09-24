@@ -1,6 +1,6 @@
 # Claude-Powered Research Assistant - Module 2 Starter
 
-This repository is a Codex-ready starter for the Module 2 lab. It follows the attached brief: Anthropic SDK and Messages API, an agent loop, three tools, extended thinking, prompt caching, structured JSON output, usage metrics, and cost reporting.
+This repository supports the Module 2 lab: Anthropic SDK and Messages API, an agent loop, three tools, extended thinking, prompt caching, structured JSON output, usage metrics, and cost reporting.
 
 ## Important shared-LLM compatibility check
 
@@ -59,12 +59,6 @@ Then run:
 npm run typecheck
 npm run dev -- "Compare retrieval-augmented generation and fine-tuning for a small support team. Use all available sources."
 ```
-
-## How to continue with Codex
-
-Open this folder in VS Code, open its terminal, and run `codex`. Paste this prompt:
-
-> Read `SKILL.md` and `README.md` completely before changing anything. Work through `TODO.md` in order. Use only the shared LLM credentials in my local `.env`; never print or commit secrets. First run `npm install` and `npm run typecheck`. Then verify whether my shared endpoint is Anthropic Messages-compatible and supports tool use, thinking, and cache usage. Do not fake unsupported metrics or sample outputs. Help me run the demos, fix real errors, and update the deliverables using the actual results.
 
 ## Commands
 
