@@ -1,0 +1,5 @@
+[
+  { "topic": "rag", "team_size": "small", "setup_effort": 3, "freshness": 5, "estimated_monthly_cost_usd": 120 },
+  { "topic": "fine-tuning", "team_size": "small", "setup_effort": 5, "freshness": 2, "estimated_monthly_cost_usd": 300 },
+  { "topic": "prompting", "team_size": "small", "setup_effort": 1, "freshness": 3, "estimated_monthly_cost_usd": 60 }
+]

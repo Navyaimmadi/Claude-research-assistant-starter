@@ -1,0 +1,20 @@
+[
+  {
+    "id": "kb-rag",
+    "title": "Retrieval-augmented generation",
+    "content": "RAG retrieves relevant external material at request time and gives it to the model as context. It is useful when facts change or citations to source material are important.",
+    "tags": ["rag", "retrieval", "knowledge"]
+  },
+  {
+    "id": "kb-finetuning",
+    "title": "Fine-tuning",
+    "content": "Fine-tuning adjusts model behavior using training examples. It is generally better suited to stable behavior, style, or task patterns than to frequently changing factual knowledge.",
+    "tags": ["fine-tuning", "training", "behavior"]
+  },
+  {
+    "id": "kb-evaluation",
+    "title": "Evaluation guidance",
+    "content": "Evaluate research assistants for factual correctness, source quality, tool-selection accuracy, latency, cost, and output-schema validity.",
+    "tags": ["evaluation", "quality", "metrics"]
+  }
+]
