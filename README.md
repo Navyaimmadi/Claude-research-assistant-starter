@@ -1,4 +1,4 @@
-# SharedLLM Research Assistant
+# Claude Research Assistant Using SharedLLM
 
 This Module 2 project keeps the official Anthropic TypeScript SDK while using course-provided SharedLLM credits through a local OpenAI-compatible transport adapter. It provides Wikipedia search, a local knowledge base, a local research dataset, validated structured JSON, and usage metrics.
 
@@ -30,7 +30,7 @@ OpenAI-compatible mode removes unsupported Anthropic `thinking` and `cache_contr
 
 | Deliverable | Status |
 |---|---|
-| Source code | Complete |
+| Source code | Implemented; TypeScript-checked, but not runtime-verified |
 | Architecture diagram | Complete |
 | Three tool definitions | Complete |
 | Illustrative sample outputs | Complete but not runtime-tested |
@@ -38,6 +38,18 @@ OpenAI-compatible mode removes unsupported Anthropic `thinking` and `cache_contr
 | Cost report | Complete with illustrative calculations |
 | Native extended-thinking evidence | Unavailable in OpenAI-compatible mode |
 | Native prompt-cache evidence | Unavailable in OpenAI-compatible mode |
+
+The illustrative files document the expected output structure but do not satisfy requirements that specifically demand observed runtime evidence.
+
+## Project Documents
+
+- [Architecture](docs/architecture.md)
+- [Capability limitations](docs/capability-limitations.md)
+- [Cache performance strategy](reports/cache-performance.md)
+- [Cost analysis](reports/cost-analysis.md)
+- [Illustrative simple-query output](outputs/sample-simple-query.json)
+- [Illustrative complex-query output](outputs/sample-complex-query.json)
+- [Illustrative tool trace](outputs/sample-tool-trace.json)
 
 ## Contents
 
