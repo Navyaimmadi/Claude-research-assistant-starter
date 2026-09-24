@@ -1,3 +1,3 @@
 # Sample Outputs
 
-Generated output files are intentionally excluded until you run the project with your course credentials. Add sanitized representative outputs here before submission. Never include API keys or private chain-of-thought.
+The JSON files in this directory are sanitized illustrative offline examples, not runtime evidence. Generated runtime outputs remain excluded. Never include API keys or private chain-of-thought.

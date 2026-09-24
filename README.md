@@ -1,83 +1,48 @@
-# Claude-Powered Research Assistant - Module 2 Starter
+# SharedLLM Research Assistant
 
-This repository supports the Module 2 lab: Anthropic SDK and Messages API, an agent loop, three tools, extended thinking, prompt caching, structured JSON output, usage metrics, and cost reporting.
+This Module 2 project keeps the official Anthropic TypeScript SDK while using course-provided SharedLLM credits through a local OpenAI-compatible transport adapter. It provides Wikipedia search, a local knowledge base, a local research dataset, validated structured JSON, and usage metrics.
 
-## Important shared-LLM compatibility check
+## How it works
 
-The course brief requires the **official Anthropic SDK and Claude Messages API**. A different model can be used through that SDK only if the shared gateway exposes an **Anthropic-compatible Messages endpoint**. A model name by itself is not enough.
+The application creates Anthropic Messages calls with `@anthropic-ai/sdk`. In SharedLLM OpenAI-compatible mode, the local adapter translates Messages requests to Chat Completions, Anthropic tools to function tools, function calls to `tool_use` blocks, and tool results to OpenAI tool messages. It also normalizes returned token usage into application metrics. See [architecture](docs/architecture.md) and [capability limitations](docs/capability-limitations.md).
 
-Before running the project, ask the instructor/provider for:
+## Setup and usage
 
-1. The Anthropic-compatible base URL.
-2. The API key.
-3. The exact model name.
-4. Confirmation that the endpoint returns Anthropic-style tool-use blocks.
-5. Confirmation that it supports `thinking` and `cache_control`, including cache usage fields.
-6. The provider's input, output, cache-write, and cache-read prices.
-
-If their gateway supports only OpenAI-compatible requests, do not silently replace the SDK. Ask the instructor whether an adapter/proxy is permitted, because otherwise the lab's Anthropic SDK requirement and its cache/thinking measurements cannot be demonstrated honestly.
-
-## What is already included
-
-- Anthropic TypeScript SDK client with configurable `baseURL`
-- Stable cached system prompt and cached tool definitions
-- Agent loop: model requests tools, application returns results, model continues
-- Three tools with JSON schemas:
-  - `web_search`: Wikipedia search and page summaries
-  - `knowledge_lookup`: local course/company knowledge file
-  - `research_db_query`: safe lookup over a local research dataset
-- Extended-thinking configuration with a dedicated token budget
-- Zod-validated structured final output
-- Per-turn and per-query token, cache, and estimated-cost logging
-- Demo and report scripts
-- Architecture diagram and submission checklist
-
-## Setup on your Mac
-
-```bash
-unzip claude-research-assistant-starter.zip
-cd claude-research-assistant-starter
-npm install
-cp .env.example .env
-```
-
-Open `.env` and replace every placeholder with values from your shared LLM provider. Do not paste your API key into source code, screenshots, sample outputs, or GitHub. `MODEL_NAME` defaults to `kimi-k2.7-code`; retain a configured different model if your course has assigned one.
-
-Before running the assistant, determine the gateway protocol using a real minimal request:
-
-```bash
-npm run probe
-```
-
-Set `SHARED_LLM_PROTOCOL=anthropic` only when the Anthropic response shape is recognized. Set it to `openai` only when the OpenAI response shape is recognized. In OpenAI mode the application still calls the official Anthropic SDK; its local fetch adapter translates Messages requests, tool definitions, tool calls, tool results, and usage fields to/from Chat Completions.
-
-The OpenAI adapter removes Anthropic `cache_control` and `thinking` fields because they are not native OpenAI-compatible fields. It reports cache and thinking as unavailable, leaves cache token metrics at zero, and does not claim extended-thinking evidence. The stable system prompt/tool definitions are retained as an application-level prompt-stability practice, not provider prompt caching.
-
-Then run:
+1. Run `npm install`.
+2. Create a private `.env` from `.env.example` and enter your course-provided SharedLLM configuration. Never commit or share it.
+3. Use the SharedLLM OpenAI gateway configuration, including its required `X-SharedLLM-Key` authentication header; the adapter supplies this header without exposing the key.
+4. Select a model available to your course account and set the OpenAI protocol mode.
 
 ```bash
 npm run typecheck
 npm run dev -- "Compare retrieval-augmented generation and fine-tuning for a small support team. Use all available sources."
 ```
 
-## Commands
+`npm run probe`, `npm run demo`, and normal assistant requests make provider/network calls. Run them only when ready to use course credits.
 
-```bash
-npm run dev -- "your research question"
-npm run demo
-npm run report
-npm run typecheck
-```
+## Offline Review Status
 
-`npm run demo` executes repeated queries so caching can be observed. `npm run report` reads `metrics/requests.jsonl` and rewrites the metrics and cost reports with real numbers.
+This repository includes source code, projected reports, and illustrative offline examples. They are not evidence of a successful provider run. Runtime verification of endpoint compatibility, model availability, tool calls, structured output, usage, costs, caching, and thinking must be performed separately if required by a grader.
 
-## Evidence you must produce before submission
+OpenAI-compatible mode removes unsupported Anthropic `thinking` and `cache_control` fields. It does not claim native Anthropic extended thinking or native prompt caching.
 
-- Real sample outputs in `outputs/`
-- At least one run in which all three tools are actually invoked
-- One complex-query run showing extended-thinking usage (record the returned usage/config evidence; do not expose private chain-of-thought)
-- Repeated runs showing cache read/write fields and a cache hit rate above 70%
-- Actual provider prices and generated cost analysis
-- A public GitHub repository link
+## Deliverable Status
 
-See [TODO.md](TODO.md) for the exact completion sequence.
+| Deliverable | Status |
+|---|---|
+| Source code | Complete |
+| Architecture diagram | Complete |
+| Three tool definitions | Complete |
+| Illustrative sample outputs | Complete but not runtime-tested |
+| Cache strategy report | Complete with projected measurement plan |
+| Cost report | Complete with illustrative calculations |
+| Native extended-thinking evidence | Unavailable in OpenAI-compatible mode |
+| Native prompt-cache evidence | Unavailable in OpenAI-compatible mode |
+
+## Contents
+
+- `src/` — agent, tools, configuration, metrics, and adapter
+- `docs/` — architecture and capability limitations
+- `outputs/` — sanitized illustrative examples, not runtime evidence
+- `reports/` — projected cache and cost documentation
+- `scripts/` — probe, demo, and report utilities
